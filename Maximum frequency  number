@@ -1,0 +1,25 @@
+import java.util.HashMap;
+
+public class Solution {
+	public static int maxFrequencyNumber(int n, int[] arr) {
+		// Write your code here
+		HashMap<Integer,Integer>mpp = new HashMap<>();
+		int maxfreq = 0;
+		int res = arr[0];
+
+		for(int i = 0;i< n;i++){
+			mpp.put(arr[i],mpp.getOrDefault(arr[i], 0) +1);
+
+		}
+
+		for(int i = 0; i < n; i++){
+			int freq = mpp.get(arr[i]);
+			if(freq > maxfreq){
+				maxfreq = freq;
+				res = arr[i];
+			}
+
+		}
+		return res;
+	}
+}
