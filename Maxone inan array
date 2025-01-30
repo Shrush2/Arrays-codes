@@ -1,0 +1,67 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static int maxOne(ArrayList<ArrayList<Integer>> arr) {
+int maxindx = 0,maxone= -1;
+int n = arr.size();
+		// Write your code here
+		for(int i =0;i < n;i++){
+			int onescnt = cntone(arr.get(i));
+			if(onescnt > maxone){
+
+				maxone=onescnt;
+				maxindx = i;
+			}
+		}
+		return maxindx;
+	}
+
+	private static int cntone(ArrayList<Integer>row){
+		int l =0,h = row.size()-1;
+		while(l<= h){
+			int mid = l+(h-l)/2;
+			if(row.get(mid) == 1){
+				h = mid-1;
+			}else{
+				l = mid+1;
+			}
+		}
+		return row.size()-l;
+	}
+}import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static int maxOne(ArrayList<ArrayList<Integer>> arr) {
+int maxindx = 0,maxone= -1;
+int n = arr.size();
+		// Write your code here
+		for(int i =0;i < n;i++){
+			int onescnt = cntone(arr.get(i));
+			if(onescnt > maxone){
+
+				maxone=onescnt;
+				maxindx = i;
+			}
+		}
+		return maxindx;
+	}
+
+	private static int cntone(ArrayList<Integer>row){
+		int l =0,h = row.size()-1;
+		while(l<= h){
+			int mid = l+(h-l)/2;
+			if(row.get(mid) == 1){
+				h = mid-1;
+			}else{
+				l = mid+1;
+			}
+		}
+		return row.size()-l;
+	}
+}
