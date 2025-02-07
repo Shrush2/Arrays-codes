@@ -1,0 +1,40 @@
+class Solution {
+    public int[] queryResults(int limit, int[][] queries) {
+     Map<Integer,Integer> ballColor = new HashMap<>();
+     Map<Integer,Integer> colorCnt = new HashMap<>();
+
+        int discnt = 0;
+        int res[] = new int[queries.length];
+
+
+        for(int i = 0;i < queries.length;i++){
+            int ball = queries[i][0];
+            int color = queries[i][1];
+
+            // If the ball already has a color, reduce its count
+              int oldColor = ballColor.getOrDefault(ball,0);
+                      if(oldColor != 0){
+              colorCnt.put(oldColor, colorCnt.getOrDefault(oldColor,0) - 1);
+  
+                if(colorCnt.get(oldColor) == 0){
+                    colorCnt.remove(oldColor);
+                    discnt--;  // Remove old color if no more occurrences
+                }
+            }
+
+            // Assign new color and update count
+            ballColor.put(ball,color);
+            if(!colorCnt.containsKey(color)){
+                discnt++;  // If new color is seen first time
+            }
+          colorCnt.put(color,colorCnt.getOrDefault(color,0)+1);
+          
+              // Store the number of distinct colors after this query
+                      res[i] = discnt;
+        }
+
+
+    return res;
+        
+    }
+}
