@@ -1,0 +1,42 @@
+---------------rotate arrlist by k places--------------
+import java.util.*;
+
+public class Solution {
+	public static ArrayList<Integer> rotateArray(ArrayList<Integer> arr, int k) {
+        int n = arr.size();
+        k = k % n;
+
+        Collections.rotate(arr,-k); //The task is to rotate the array to the left by 2 positions.
+
+
+        return arr;
+
+    }
+}
+
+-----------------------rotate arra by  k in arr------------------
+class Solution {
+    public void rotate(int[] arr, int k) {
+        int n = arr.length;
+        k = k % n;
+
+
+        reverse(arr,0,n-1);
+
+        reverse(arr,0,k-1);
+
+        reverse(arr,k,n-1);
+    }
+    public void reverse(int arr[],int s,int e){
+        while(s < e){
+            int temp = arr[s];
+            arr[s] = arr[e];
+            arr[e] = temp;
+            s++;
+            e--;
+        }
+    }
+}
+
+
+
