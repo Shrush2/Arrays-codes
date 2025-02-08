@@ -12,3 +12,42 @@ public class Solution {
     }
 }
 
+-----------------------2nd largest elememt in arr---------------------------------------------
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int findSecondLargest(int n, int[] arr) {
+		int firstmax = Integer.MIN_VALUE;
+		int secondmax = Integer.MIN_VALUE;
+
+		for(int num : arr){
+			if(num > firstmax){
+				secondmax = firstmax;
+				firstmax = num;
+			}else if(num > secondmax && num != firstmax) {
+				secondmax = num;
+			}
+		}
+		return secondmax == Integer.MIN_VALUE ? -1 : secondmax;
+
+		// Arrays.sort(arr);  not efficient for all test caeses
+		// return arr[n-2];
+		
+	}
+}
+
+---------------------------------Kth largest element-----------------------------------
+
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+
+    static int largestElement(int[] arr, int n) {
+        Arrays.sort(arr);
+        return arr[n - k];
+
+    }
+}
+
