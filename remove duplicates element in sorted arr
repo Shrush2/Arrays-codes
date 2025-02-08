@@ -1,0 +1,16 @@
+public class Solution {
+    public static int removeDuplicates(int[] arr,int n) {
+        int i=0;
+        for(int j=1;j<n;j++){
+            if(arr[i] != arr[j]){ // if arr[i] & arr[j] elememt are unique 
+                i++;
+                arr[i] = arr[j]; //place the diff element at arr[i]
+                
+            }
+        }
+        return i+1; //return the no. of elements of arr i.e 2+1=3
+
+
+    }
+
+}
