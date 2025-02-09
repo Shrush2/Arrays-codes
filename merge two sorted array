@@ -1,3 +1,4 @@
+================================= Allowa duplicates alsoo in arr ========================
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         ArrayList<Integer> l1 =  new ArrayList<>();
@@ -22,5 +23,36 @@ class Solution {
             System.out.print(nums1[i] +" ");
         }
         
+    }
+}
+
+----------------------------------------not allowws duopluicate elements------------------------
+import java.util.*;
+public class Solution {
+    public static List< Integer > sortedArray(int []a, int []b) {
+
+        int n = a.length;
+        int m = b.length;
+
+        Set<Integer> s1  = new HashSet<>();
+         ArrayList<Integer> l1  = new ArrayList<>();
+
+         for(int i=0;i<n;i++){
+             s1.add(a[i]);
+         }
+
+         for(int i=0;i<m;i++){
+             s1.add(b[i]);
+         }
+
+        for(int s: s1){
+            l1.add(s);
+        }
+        Collections.sort(l1);
+
+        
+        return l1;
+
+
     }
 }
