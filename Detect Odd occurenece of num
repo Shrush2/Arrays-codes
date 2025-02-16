@@ -1,0 +1,43 @@
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+    static int[] detectOdd(int n, int nums[]) {
+
+    int xorAll =0;
+
+    //check even occurenece bby  XOR
+    for(int num : nums){
+        xorAll ^= num;
+    }
+
+    //check rightmost bit set
+    int rightMost = xorAll & -xorAll;
+
+    int x = 0, y = 0;
+
+    //divide int to grp and find odd occurence
+    for(int num : nums){
+        if((num & rightMost) != 0){
+            x ^= num;
+        }else{
+            y ^= num;
+        }
+    }
+
+    //print in order wise
+    if(x > y){
+        int temp = x;
+        x = y;
+        y = temp;
+    }
+    return new int[]{x,y};
+    }
+}
+
+ou are given an array of ‘N’ non-negative integers where all elements appear an even number of times except two, print the two odd occurring elements 
+in increasing order. It may be assumed that the size of the array is at-least two and there will always be exactly two numbers which appear an odd number 
+of times in the given array.
+EXAMPLE:
+Input: 'N' = 6, 'NUMS' = [1, 1, 2, 3, 4, 4]
+Output: 2 3
