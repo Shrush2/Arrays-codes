@@ -1,0 +1,21 @@
+import java.util.*;
+public class Solution {
+    public static int longestSubarrayWithSumK(int []nums, long k) {
+
+        int n =  nums.length;
+        int maxlen = 1;
+
+        for(int i=0;i<n;i++){
+             long sum = 0;
+
+            for(int j =i;j<n;j++){
+                sum += nums[j];
+            
+            if(sum == k){
+                maxlen = Math.max(maxlen,j-i+1);
+            }
+            }
+        }
+        return maxlen;
+    }
+}
