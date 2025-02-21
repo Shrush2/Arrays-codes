@@ -1,0 +1,31 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+	public static ArrayList<ArrayList<Integer>> rotateMatrix(ArrayList<ArrayList<Integer>> matrix){
+		int n = matrix.size();
+		int m = matrix.get(0).size();
+        
+		for (int i = 0; i < n; i++) {
+            for (int j = i+1 ; j < m; j++) {  // Use 'm' instead of 'n' to handle non-square matrixrices correctly
+                int temp = matrix.get(i).get(j);
+                matrix.get(i).set(j, matrix.get(j).get(i));
+                matrix.get(j).set(i, temp);
+            }
+        }
+
+        // Step 2: Reverse each row to get the final rotated matrixrix
+        for (int i = 0; i < m; i++) {
+            int l = 0, r = n - 1;
+            while (l < r) {
+                int temp = matrix.get(l).get(i);
+                matrix.get(l).set(i, matrix.get(r).get(i));
+                matrix.get(r).set(i, temp);
+                l++;
+                r--;
+            }
+        }
+       return matrix;
+	}
+}
