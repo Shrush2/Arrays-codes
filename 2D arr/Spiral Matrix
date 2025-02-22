@@ -1,0 +1,45 @@
+import java.util.*;
+public class Solution {
+    public static int[] spiralMatrix(int [][]MATRIX) {
+       
+        int n = MATRIX.length;
+        int m = MATRIX[0].length;
+        int ans[] = new int[n*m];
+        int indx = 0;
+
+         if(MATRIX == null || n==0 ||m==0){
+            return new int[]{};
+        }
+
+        int sr = 0,sc = 0,er = n-1,ec = m-1;
+
+        while(sr <= er && sc <= ec){
+
+            for(int i = sc;i <= ec;i++){
+                ans[indx++] = MATRIX[sr][i];
+                
+      }
+      sr++;
+
+      for(int j = sr;j <= er;j++){
+           ans[indx++] = MATRIX[j][ec];
+      }
+      ec--;
+
+      if(sr <= er){
+          for(int i = ec;i >= sc ;i--){
+              ans[indx++] =  MATRIX[er][i];
+          }
+          er--;
+      }
+
+      if(sc <= ec){
+          for(int i = er;i >= sr;i--){
+              ans[indx++] =  MATRIX[i][sc];
+          }
+          sc++;
+      }
+        }
+        return ans;
+    }
+}
