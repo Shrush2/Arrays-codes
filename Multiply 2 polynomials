@@ -1,0 +1,56 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int[] multiply(int[] a, int[] b, int n)
+    {
+        int m = b.length;
+        int res[] = new int[n+m-1];
+
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                res[i + j] += a[i] * b[j];
+            }
+        }
+        // Write your code here
+        return res;
+    }
+}
+You are given two polynomials. You have to multiply them and print the result.
+
+You are given the coefficients of the first and second polynomials denoted by array A and array B respectively. You have to return the coefficient of the resulting polynomials.
+
+Example:-
+A = [1,2,3]
+B = [3,2,1]
+
+ANSWER:- The answer should be [3,8,14,8,3] as the polynomials are x^2 + 2x + 3 and 3x^2 + 2x + 1.On multiplying we get 3x^4 + 8x^3 + 14x^2 + 8x + 3 and hence the answer is [3, 8, 14, 8, 3].
+Step 1: Multiply 1x² (from A)
+1x² × 3x² = 3x⁴
+
+1x² × 2x = 2x³
+
+1x² × 1 = 1x²
+
+Step 2: Multiply 2x (from A)
+2x × 3x² = 6x³
+
+2x × 2x = 4x²
+
+2x × 1 = 2x
+
+Step 3: Multiply 3 (from A)
+3 × 3x² = 9x²
+
+3 × 2x = 6x
+
+3 × 1 = 3
+
+🧮 Now, Add All Like Terms:
+Group by powers of x:
+
+Power of x	Terms	Sum
+x⁴	3x⁴	3x⁴
+x³	2x³ + 6x³	8x³
+x²	1x² + 4x² + 9x²	14x²
+x¹	2x + 6x	8x
+x⁰	3	3
