@@ -1,0 +1,33 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static ArrayList<Integer> rowWaveForm(ArrayList<ArrayList<Integer>> mat) {
+     ArrayList<Integer> res = new ArrayList<>();
+        int n = mat.size();
+		int m = mat.get(0).size();
+
+		for(int i = 0 ; i < n;i++){
+			if(i % 2  == 0){
+				for(int j = 0 ; j < m;j++){
+					res.add(mat.get(i).get(j));
+				}
+			}else{
+				for(int j = m-1 ; j >= 0; j--){
+					res.add(mat.get(i).get(j));
+				}
+			}
+		}
+				return res;
+			}
+		}
+You are given a 2D array with dimensions ‘N*M’. You need to read the array elements row-wise and return a 
+linear array that stores the elements like a wave i.e the 1st-row elements are stored from left to right, 2nd-row elements are
+stored from right to left, and so on.
+
+For test case 1, the array is traversed as:
+The first row is traversed from left to right. -> [1, 2]
+The second row is traversed from right to left. -> [5, 0]
+Therefore the final answer is [1, 2, 5, 0].
