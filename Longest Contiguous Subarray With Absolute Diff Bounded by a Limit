@@ -1,0 +1,53 @@
+import java.util.* ;
+import java.io.*; 
+
+import java.util.ArrayList;
+
+public class Solution 
+{
+
+	public static int getLongestSubarrayLength(ArrayList<Integer> arr, int k) 
+	{
+		Deque<Integer> maxdeque = new LinkedList<>();
+		Deque<Integer> mindeque = new LinkedList<>();
+
+		int left = 0, right = 0;
+		int n = arr.size();
+		int maxlen = 0;
+
+		while(right < n){
+			while(!maxdeque.isEmpty() && arr.get(right) > arr.get(maxdeque.peekLast())){
+				maxdeque.pollLast();
+			}
+			maxdeque.offerLast(right);
+
+			while(!mindeque.isEmpty() && arr.get(right) < arr.get(mindeque.peekLast())){
+				mindeque.pollLast();
+			}
+			mindeque.offerLast(right);
+
+			while(arr.get(maxdeque.peekFirst()) - arr.get(mindeque.peekFirst()) > k){
+				if(maxdeque.peekFirst() == left) maxdeque.pollFirst();
+				if(mindeque.peekFirst() == left) mindeque.pollFirst();
+				left++;
+			}
+
+			maxlen = Math.max(maxlen,right - left + 1);
+			right++;
+		}
+		return maxlen;
+	}
+}
+
+
+Given an array/list 'ARR' of integers and an integer 'LIMIT'. You are supposed to return the length of the longest subarray for which the absolute difference between the maximum and minimum 
+element is less than or equal to the 'LIMIT'.
+
+T.C => O(N)
+S.C => O(N)
+
+Note :
+An array ‘B’ is a subarray of an array ‘A’ if ‘B’ that can be obtained by deletion of, several elements(possibly none) from the start of ‘A’ and several elements(possibly none) from the end of ‘A’. 
+
+Longest valid subarray: [6, 5, 4]
+Length = 3
