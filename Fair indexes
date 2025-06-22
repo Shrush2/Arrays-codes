@@ -1,0 +1,50 @@
+public class Solution 
+{
+    public static int totalIndexes(int[] A, int[] B)
+    {
+        int n = A.length;
+        int prefixA[] = new int[n];
+        int prefixB[] = new int[n];
+
+        prefixA[0] = A[0];
+        prefixB[0] = B[0];
+
+        for(int i = 1; i < n; i++){
+            prefixA[i] = prefixA[i - 1] + A[i];
+            prefixB[i] = prefixB[i - 1] + B[i];
+
+        }
+
+        int totalsumA = prefixA[n-1];
+        int totalsumB = prefixB[n-1];
+        int count = 0;
+
+        for(int k = 0; k < n-1; k++){
+            int firstA = prefixA[k];
+            int secondA = totalsumA - prefixA[k];
+            int firstB = prefixB[k];
+            int secondB = totalsumB - firstB;
+
+            if(firstA == secondA && firstB == secondB && firstA == firstB){
+                count++;
+            }
+        } 
+                    return count;
+
+}
+}
+
+Levi Ackerman has two arrays, ‘A’ and ‘B’ consisting of ‘N’ integers each. He wants to divide these two arrays into two parts each, such that the sum of all the elements in 
+the first part is equal to the sum of elements in the second part, and the index ‘k’ where the splitting is done, must be the same in both the arrays.
+
+In simple terms, If he splits the array at index k, then (A[0]+A[1]....A[k]), (A[k + 1] + A[k + 2]....A[n - 1]), (B[0] + B[1]....B[k]), (B[k + 1] + B[k + 2]....B[n - 1]) are all equal.
+
+Find the total number of all the Indexes which satisfy the given condition.
+
+For Example :
+n = 4, A = {2, 4, 5, 1}, B = {3, 3, 10, -4}
+
+Now in this example, if we split the array at index 1 then the sum of all the subarrays is 2 + 4 = 6, 5 + 1 = 6, 3 + 3 = 6, 10 + (-4) = 6, and no other index satisfies this condition, hence the answer is 1.
+
+T.C => O(n)
+S.C => O(n)
