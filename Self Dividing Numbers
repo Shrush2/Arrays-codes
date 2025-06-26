@@ -1,0 +1,41 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+    public static ArrayList<Integer> findAllSelfDividingNumbers(int lower, int upper) {
+
+        ArrayList<Integer> res = new ArrayList<>();
+
+        for(int i = lower; i <= upper ; i++){
+                if(isSelfDivding(i)){
+                    res.add(i);
+                }
+            
+        }
+        return res;
+    }
+
+    public static Boolean isSelfDivding(int num){
+        int org = num;
+
+        while(num > 0){
+            int dig = num % 10;
+            if(dig == 0 || org % dig != 0){
+                return false;
+            }
+
+            num /= 10;
+        }
+        return true;
+    }
+}
+
+A Ninja wants to collect all possible self-dividing numbers from a given range of numbers.
+
+A self-dividing number is a number that is divisible by every digit it contains.
+
+For example:
+128 is a self-dividing number because 128 % 1 == 0, 128 % 2 == 0, and 128 % 8 == 0.
+Given a ‘LOWER’ and ‘UPPER’ number bound, your task is to find all possible self-diving numbers in the range of ‘LOWER’ to ‘UPPER’.
+
