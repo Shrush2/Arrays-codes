@@ -1,0 +1,60 @@
+import java.util.* ;
+import java.io.*; 
+import  java.util.ArrayList;
+
+public class Solution {
+    public static int gridOverlap(ArrayList<ArrayList<Integer>> mat1, ArrayList<ArrayList<Integer>> mat2, int n)  {
+      int maxoveralp = 0;
+
+      for(int rows = -n+1 ; rows < n ; rows++){
+          for(int cols = -n+1 ; cols < n; cols++){
+
+              int overlap = 0;
+
+              for(int i = 0; i < n;i++){
+                  for(int j = 0 ; j < n;j++){
+                      int shifti = i + rows;
+                      int shiftj = j + cols;
+
+                      if(shifti >= 0 && shifti < n && shiftj >= 0 && shiftj < n){
+                          if(mat1.get(i).get(j) == 1 && mat2.get(shifti).get
+                          (shiftj) == 1){
+                              overlap++;
+                          }
+                      }
+                  }
+              }
+
+              maxoveralp = Math.max(maxoveralp,overlap);
+          }
+      }
+      return maxoveralp;
+
+    }
+}
+
+You are given two binary grids ‘MAT1’ and ‘MAT2’ of size N x N each. Both grids either have 0 or 1 written in each cell.
+You can perform four types of operations to MAT1-
+
+• Right Shift
+• Left Shift
+• Up Shift
+• Down Shift
+
+
+N = 3
+
+MAT1 =
+1 1 0
+0 0 0
+0 0 0
+
+MAT2 =
+0 1 1
+0 0 0
+0 0 0
+
+output := 2
+
+T.C => O(n)^4
+S.C => O(n)
