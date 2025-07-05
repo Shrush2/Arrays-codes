@@ -1,0 +1,57 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int largestSubmatrixWithSumZero(int[][] mat,int n ,int m) {
+
+        int len = 0;
+        int maxarea = 0;
+        for(int r = 0; r < n; r++){
+            int temp[] = new int[m];
+
+            for(int bot = r; bot < n; bot++){
+
+                for(int col = 0; col < m; col++){
+                    temp[col] += mat[bot][col];
+                }
+
+                len = longestsubarr(temp);
+                int rows = bot - r + 1;
+                int area = rows * len;
+
+                maxarea = Math.max(maxarea,area);
+            }
+        }
+        return maxarea;
+
+    }
+
+    public static  int longestsubarr(int arr[]){
+        int n  = arr.length;
+        Map<Integer,Integer> map = new HashMap<>();
+
+        map.put(0,-1);
+
+        int maxlen = 0;
+        int sum = 0;
+
+        for(int i = 0; i < n; i++){
+            sum += arr[i];
+
+            if(map.containsKey(sum)){
+                int previndx = map.get(sum);
+                maxlen = Math.max(maxlen, i - previndx);
+            }else{
+                map.put(sum,i);
+            }
+        }
+        return maxlen;
+
+
+    }
+}
+T.C => O(n^3)
+S.C => O(N)
+Given a 2-dimensional matrix of size ‘N’ x ‘M’. Find the size of the largest sub-matrix whose sum is equal to 0. The size of a matrix is the product of rows and columns in it.
+
+A sub-matrix is a matrix obtained from the given matrix by deletion of several (possibly, zero or all) rows/columns from the beginning and several 
+(possibly, zero or all) rows/columns from the end.
