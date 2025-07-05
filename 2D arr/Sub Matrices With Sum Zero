@@ -1,0 +1,57 @@
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+
+    public static int subMatrices(int[][] mat, int n) {
+
+        int count = 0;
+        for(int row = 0; row < n ;row++){
+
+            int temp[] = new int[n];
+            for(int bottom = row; bottom < n; bottom++){
+
+                for(int col = 0; col < n; col++){
+                    temp[col] += mat[bottom][col];
+                }
+
+                count += countPrefixSub(temp);
+            }
+
+        }
+        return count;
+        
+    }
+
+    public static int countPrefixSub(int arr[]){
+        int count = 0,sum = 0;
+        Map<Integer,Integer> prefix = new HashMap<>();
+        prefix.put(0,1);
+
+        for(int val : arr){
+            sum += val;
+
+            if(prefix.containsKey(sum)){
+                count += prefix.get(sum);
+            }
+
+            prefix.put(sum,prefix.getOrDefault(sum,0) + 1);
+        }
+        return count;
+        
+    }
+
+}
+
+You’re given a square matrix 'MAT' of order N. Your task is to find the number of non-empty sub-matrices such that the sum of all the elements 
+inside the submatrix is zero.
+
+NOTE:
+
+1. The matrix may also contain some negative elements.
+2. A square matrix is a matrix with the same number of rows and columns.
+A matrix obtained by deleting some (possibly zero) of the rows and/or columns from the beginning and/or from the end of a matrix is said 
+to be a sub-matrix of the given matrix.
+
+T.C => O(N^3)
+S.C => O(N)
