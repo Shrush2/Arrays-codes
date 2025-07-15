@@ -44,3 +44,6 @@ Suppose given ‘BILL_ARR’ array is { 5, 5, 5, 10, 20 } so we return ‘True�
 
 customers we take ‘5$’ from each customer then ‘4th’ customer give ‘10$’ we give him ‘5$’ back now we have ‘2’, ‘5$’ note and ‘1’, ‘10$’ note than ‘5th’ customer give
 ‘20$’ so we give him back one ‘10$’ and one ‘5$’ note.
+
+TC => O(N)
+S.C => O(1)
