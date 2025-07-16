@@ -1,0 +1,44 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+   
+   	public static boolean isStrobogrammatic(String n){
+		   int left = 0;
+		   int right = n.length() - 1;
+
+		   Map<Character,Character> rotatemap = new HashMap<>();
+		   rotatemap.put('0','0');
+		   rotatemap.put('1','1');
+		   rotatemap.put('6','9');
+		   rotatemap.put('8','8');
+		   rotatemap.put('9','6');
+
+
+		   while(left <= right){
+			   char leftchar = n.charAt(left);
+			   char rightchar = n.charAt(right);
+
+			   if(!rotatemap.containsKey(leftchar)) {
+				   return false;
+			   }
+
+			   if(!rotatemap.get(leftchar).equals(rightchar)){
+				   return false;
+			   }
+			   left++;
+			   right--;
+		   }
+
+		   return true;
+
+    }
+}
+
+Given a string ‘N’ that represents a number, you need to check if the given number is a strobogrammatic number or not.
+A strobogrammatic number is a number that looks the same when rotated by 180.
+In other words, a number that on rotating right side up and upside down appears the same is a strobogrammatic number.
+For Example:
+‘986’ is a strobogrammatic number because on rotating ‘986’ by 180, ‘986’ will be obtained.
+
+T.C => O(N)
+>C => O(N)
