@@ -1,0 +1,37 @@
+class Solution {
+    public int maximumLength(int[] nums) {
+        int oddcnt = 0, evencnt = 0,cnt = 0;
+        boolean flag = nums[0] % 2 == 1;
+
+        for(int num : nums){
+            if(num % 2 == 1){
+                if(flag){
+                    flag = !flag;
+                    cnt++;
+                }
+                oddcnt++;
+            }else{
+                if(!flag){
+                    flag = !flag;
+                    cnt++;
+                }
+                evencnt++;
+            }
+        }
+        return Math.max(cnt,Math.max(oddcnt,evencnt));
+        
+    }
+}
+
+You are given an integer array nums.
+A subsequence sub of nums with length x is called valid if it satisfies:
+(sub[0] + sub[1]) % 2 == (sub[1] + sub[2]) % 2 == ... == (sub[x - 2] + sub[x - 1]) % 2.
+Return the length of the longest valid subsequence of nums.
+A subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
+
+Input: nums = [1,2,3,4]
+Output: 4
+Explanation:
+The longest valid subsequence is [1, 2, 3, 4].
+
+ 
