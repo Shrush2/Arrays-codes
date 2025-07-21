@@ -1,0 +1,76 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+	public static String ticTacToeWinner(ArrayList<ArrayList<Integer>> moves, int n) {
+
+			char[][] board = new char[3][3];
+
+			for(int i = 0; i < n; i++){
+
+				int row = moves.get(i).get(0);
+				int col = moves.get(i).get(1);
+
+				char playerchar = (i % 2 == 0) ? 'X' : 'O'; 
+
+				board[row][col] = playerchar;
+
+				if(isWinner(board,row,col,playerchar)){
+					return playerchar == 'X' ? "player1" : "player2";
+				}
+			}
+
+				if(moves.size() == 9) return "draw";
+
+				return "uncertain";
+			
+
+
+	}
+
+	public static boolean isWinner(char[][] board,int row,int col,char player){
+		if(board[row][0] == player && board[row][1] == player && board[row][2] == player){
+			return true;
+		}
+
+		if(board[0][col] == player && board[1][col] == player && board[2][col] == player){
+			return true;
+		}
+
+		if( row ==  col && board[0][0] == player && board[1][1] == player && board[2][2] == player){
+			return true;
+		}
+
+		if( row + col == 2 && board[0][2] == player && board[1][1] == player && board[2][0] == player){
+			return true;
+		}
+		return false;
+	}
+}
+
+Two players, named ‘player1’ and ‘player2’, play a tic-tac-toe game on a grid of size ‘3 x 3’. Given an array ‘moves’ of size ‘n’, where each element of the array is a tuple of the form (row, column) representing a 
+position on the grid. Players place their characters alternatively in the sequence of positions given in ‘moves’. Consider that ‘player1’ makes the first move. Your task is to return the winner of the game, i.e., 
+the winning player’s name. If there is no winner and some positions remain unmarked, return ‘uncertain’. Otherwise, the game ends in a draw, i.e., when all positions are marked without any winner, return ‘draw’.
+
+The rules of tic-tac-toe are as follows :
+
+1. At the start of the game, all grid positions are empty.
+
+2. The players take turns to place their characters alternatively into empty positions. ‘player1’ always places character ‘X’ and ‘player2’ always places character ‘O’.
+
+3. A player will never place characters into filled positions.
+
+4. The game ends when all the positions are filled.
+
+5. The game also ends when any row, column, or diagonal contains three same characters (i.e., either ‘X’ or ‘O’). In this case, the winner is the player whose character occupies these three positions.
+
+6. Once the game ends, no more moves are played.
+
+Example :
+
+n = 5, moves = {{0,2}, {0,0}, {1,1}, {2,2}, {2,0}}
+
+T.C => O(1)
+S.C => O(1)
+First, an ‘X’ is placed at (0,2) by ‘player1’, then an ‘O’ at (0,0) by ‘player2’ and so on. After performing the given five moves, the grid contains three ‘X’s along a diagonal; hence the winner is ‘player1’. So the answer is ‘player1’.
