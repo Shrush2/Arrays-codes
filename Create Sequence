@@ -1,0 +1,39 @@
+import java.util.*;
+
+public class Solution{
+    public static ArrayList<Long> createSequence(long n){
+
+        ArrayList<Long> sequence = new ArrayList<>();
+        long curr = 0;
+        soln(curr,n,sequence);
+        Collections.sort(sequence);
+        return sequence;
+    }
+
+    public static void soln(long curr,long n,ArrayList<Long>list){
+
+        if(curr != 0){
+            list.add(curr);
+        }
+
+        if(curr * 10 +2 <= n){
+            soln(curr * 10 + 2,n,list);
+        }
+
+        if(curr * 10 + 5 <= n){
+            soln(curr * 10 + 5,n,list);
+        }
+    }
+}
+
+
+Ninja is good at numbers. So today his friend gave him a task that required him to find out numbers made of 2 and 5 only less than a given limit.
+Given an integer N, you need to print all numbers less than N which are having digits only 2 or 5 or both.
+
+input :-
+n = 30;
+output :- [2,5,22,25]
+
+T.C => O(k)
+S.C => O(K + d) Kfrom result storage,d from recursion stack.
+
