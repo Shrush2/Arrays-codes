@@ -1,0 +1,40 @@
+
+public class Solution {
+
+	public static int minimumSwap(int[] arr, int n) {
+		// Write your code here
+		int cnt0 = 0;
+		int swap_left0 = 0;
+
+		for(int i = 0; i < n;i++){
+			if(arr[i] == 0){
+				cnt0 += 1;
+			}else{
+				swap_left0 += cnt0;
+			}
+		}
+
+		int cnt1 = 0;
+		int swap_left1 = 0;
+
+		for(int i = 0; i < n;i++){
+			if(arr[i] == 1){
+				cnt1 += 1;
+			}else{
+				swap_left1 += cnt1;
+			}
+		}
+
+		return Math.min(swap_left0,swap_left1);
+
+		
+	}
+
+}
+You are given an array ‘arr’ of size ‘N’ containing 0 and 1. You can swap any two adjacent elements. Your task is to find the minimum number of swaps such that the 0 are shifted to one side, and 1 shifted to the other.
+
+For example:
+For the given array ‘arr’ = {1,0,1,1} we can swap the first and second elements, and all 1s will be shifted to the right side and 0s to the left side. Hence a minimum number of operations required is 1.
+
+T.C => O(N + M)
+S.C => O(1)
