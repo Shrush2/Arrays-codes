@@ -1,0 +1,45 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution
+{
+	public static int longestIncreasingPath(ArrayList<ArrayList<Integer>> mat, int n, int m)
+	{	
+		int dfs[][] = new int[n][m];
+		for(int row[] : dfs){
+			Arrays.fill(row,-1);
+		}
+		return dfs(0,0,mat,dfs,n,m);
+	}
+
+	public static int dfs(int i,int j,ArrayList<ArrayList<Integer>> mat,int dfs[][],int n,int m)
+	{
+		if(dfs[i][j] != -1) return dfs[i][j];
+		int length = 1;
+
+		if(i+1 < n && mat.get(i+1).get(j) > mat.get(i).get(j)){
+			 length = Math.max(length,1 + dfs(i+1,j,mat,dfs,n,m));
+		}
+
+		if(j+1 < m && mat.get(i).get(j+1) > mat.get(i).get(j)){
+			 length = Math.max(length,1 + dfs(i,j+1,mat,dfs,n,m));
+		}
+
+		dfs[i][j] = length;
+		return length;
+		
+
+	}
+}
+
+T.C => O(N * M)
+S.C => O(N* M)
+
+You are given a 2-D matrix ‘mat’, consisting of ’N’ rows and ‘M’ columns. The element at the i-th row and j-th column is ‘mat[i][j]’.
+From mat[i][j], you can move to mat[i+1][j] if mat[i+1][j] > mat[i][j], or to mat[i][j+1] if mat[i][j+1] > mat[i][j].
+Your task is to find and output the longest path length if you start from (0,0) i.e from mat[0][0] and end at any possible cell (i, j) i.e at mat[i][j].
+
+Note :
+Consider 0 based indexing.
+
+
+T.C => O(
