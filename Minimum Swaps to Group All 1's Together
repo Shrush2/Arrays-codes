@@ -1,0 +1,46 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int groupAllOneTogether(int arr[], int n) {
+        int cntOnes = 0;
+        for(int i = 0; i < n;i++){
+            if(arr[i] == 1){
+                cntOnes++;
+            }
+        }
+
+        if(cntOnes == 0) return -1;
+        if(cntOnes == n) return 0;
+
+
+        int currOnes = 0;
+        for(int i = 0; i < cntOnes; i++){
+            if(arr[i] == 1){
+                currOnes++;
+            }
+        }
+
+        int maxwindow = currOnes;
+
+        for(int i =  cntOnes; i < n;i++){
+            if(arr[i - cntOnes] == 1){
+                currOnes--;
+            } 
+            if(arr[i] == 1) {
+                currOnes++;
+            }
+
+            maxwindow = Math.max(maxwindow,currOnes);
+        }
+        return cntOnes - maxwindow;
+    }
+}
+
+You are given an array/list ‘ARR’ of size ‘N’. ‘ARR' is binary i.e. it contains only 0s and 1s (ARR[i] = {0, 1}). Your task is to find out the minimum number of swaps required to group all 1s together.
+Note: If ‘ARR’ contains only 0’s then print -1.
+Example:
+
+Let ‘ARR’ = [ 0, 1, 0, 1]. We can group all 1s together in the following ways: ‘ARR’ =[0, 0, 1, 1] or ‘ARR’ = [0, 1, 1, 0]. 
+
+T.C => O(N)
+S.C => O(1)
