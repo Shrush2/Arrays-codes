@@ -1,0 +1,33 @@
+import java.util.* ;
+import java.io.*; 
+public class RangeSumQuery {
+  private  int ar[];
+
+    RangeSumQuery(int[] arr) {
+        // Constructor.
+        ar = Arrays.copyOf(arr,arr.length);
+    }
+
+    void update(int ind, int val) {
+        // Update operation.
+        ar[ind] = val;
+    }
+    
+    int sumOfRange(int l, int r) {
+        // Find the sum of range [l,r].
+        int sum = 0;
+        for(int i = l;i <= r;i++){
+            sum += ar[i];
+        }
+        return sum;
+    }
+}
+
+
+You are given an array ‘ARR’. You are supposed to process two types of queries - Update an index ‘IND’ with value ‘VAL’ in the array, and find the sum of a range in the array.
+You are supposed to implement the class which includes two operations:
+1. UPDATE_INDEX(IND, VAL) - It updates the value of ARR[IND] to VAL.
+2. SUM\_OF\_RANGE(l, r) - It returns the sum of the subarray ARR[l] to ARR[r] i.e. ARR[l] + ARR[l+1] + ARR[l+1] + ….. + ARR[r-1] + ARR[r].
+
+S.C => O(n)
+T.C => O(Q * N)
