@@ -1,0 +1,30 @@
+import java.util.*;
+public class Solution {
+    public static int lengthOfLHS(int[] arr){
+        // Write your code here.
+        Map<Integer,Integer> freq = new HashMap<>();
+
+        for(int num : arr){
+            freq.put(num,freq.getOrDefault(num,0)+ 1);
+        }
+
+    int maxlen = 0;
+        for(int num : freq.keySet()){
+            if(freq.containsKey(num + 1)){
+                int len = freq.get(num) + freq.get(num + 1);
+                maxlen = Math.max(len,maxlen);
+            }
+        }
+
+        return maxlen;
+    }
+}
+
+You are given an array ‘ARR’ of 'N' integers. Your task is to find the longest harmonious subsequence of this array.
+A sequence is Harmonious if the difference between the maximum and the minimum of all the elements is exactly 1.
+For example
+[3, 4, 3, 3, 3, 3, 4] is a harmonic array as the maximum of all the elements is 4 and minimum of all the elements is 3. So, the difference between the maximum and the minimum = 4 - 3 = 1.
+
+
+T.C => O(N)
+S.C => O(n)
