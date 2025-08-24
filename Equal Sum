@@ -1,0 +1,40 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static int equalSum(ArrayList<Integer> token) {
+		int totalSum = 0;
+		int n = token.size();
+
+		for(int i = 0; i < n;i++){
+			totalSum += token.get(i);
+		}
+
+		int leftSum = 0;
+		for(int i = 0; i < n; i++){
+			int rightSum = totalSum - leftSum - token.get(i);
+
+			if(leftSum == rightSum){
+				return i;
+			}
+			leftSum += token.get(i);
+		}
+		return -1;
+
+
+	}
+}
+
+
+After a long lockdown, Alex and Rome want to meet. There are ‘N’ checkpoints in between their homes numbered from 0 to N - 1, where checkpoint 0 is closest to Alex and checkpoint N - 1 is closest to Rome. 
+Each checkpoint has a token with a number written on it. If someone crosses some checkpoint, he will collect the token. Alex and Rome will meet at some checkpoint ‘i’, 0 <= i <= N - 1. 
+They aim to have the same total sum of numbers on the tokens they have collected individually when they meet at the checkpoint ‘i’. They don’t want any fights, so no one will take the token at checkpoint ‘i’.
+You are given an array ‘token’ consisting of ‘N’ integers, signifying the number on each token. Find out the checkpoint number ‘i’ such that Alex and Rome will have the same sum of numbers on their tokens.
+Since Alex is lazy, find out the index closest to Alex such that the above conditions hold. Also, notify if no such checkpoints exist.
+
+1 -> 2 -> 3   (represents 321)
+4 -> 5 -> 6   (represents 654)
+321 + 654 = 975
+Result = 5 -> 7 -> 9
