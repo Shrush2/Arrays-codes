@@ -1,0 +1,52 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int[] exclusiveTime(int[][] logs, int n, int l) {
+        // Write your code here.
+
+        int res[] = new int[n];
+        Stack<Integer> stack = new Stack<>();
+        int prevTime = logs[2][0];
+
+        for(int i = 0; i < l;i++){
+            int id = logs[0][i];
+            int type = logs[1][i];
+            int time = logs[2][i];
+
+            if(type == 1){
+                if(!stack.isEmpty()){
+                    res[stack.peek()] += (time - prevTime);
+                }
+                stack.push(id);
+                prevTime = time;
+            }else{
+                res[stack.pop()] += (time - prevTime + 1);
+                prevTime = time + 1;
+            }
+        } 
+        return res;   
+    }
+}
+
+
+Problem statement
+This time we are executing a program containing ‘N’ functions on a single-threaded CPU. Each function has a unique ‘ID’ between 0 and (N-1) and each time it starts or ends, we write a log with the ID, whether it started or ended, and the TIMESTAMP.
+
+You are given a 2D array of integers containing information about ‘L’ logs where ith column represents the ith log message. Each column contains 3 rows to describe the ith log where,
+
+1st Row - represents the ID of the function.
+
+2nd Row - represents whether the function has started or ended where 1 denotes the start and -1 denotes the end.
+
+3rd Row - represents the TIMESTAMP of the log.
+You are required to return an array where the value at the ith index represents the exclusive time for the function with ID ‘i’.
+
+Note:
+
+1. The exclusive time of a function is the sum of execution times for all calls of that function.
+
+2. A function can be called multiple times, possibly recursively.
+
+3. No two events will happen at the same time where an event denotes either a start or end of a function call. This basically means no two logs have the same timestamp. 
+
+4. Each function has an end log for each start log. 
