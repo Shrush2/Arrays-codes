@@ -1,0 +1,50 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int threePointer(ArrayList<Integer> X, ArrayList<Integer> Y, ArrayList<Integer> Z) {
+        // Write your code here.
+        int i = 0,j = 0,k = 0;
+        int minVal = Integer.MAX_VALUE;
+        int maxVal = Integer.MIN_VALUE;
+        int ans = Integer.MAX_VALUE;;
+
+        
+        while(i < X.size() && j < Y.size() && k < Z.size()){
+            int a = X.get(i);
+            int b = Y.get(j);
+            int c = Z.get(k);
+
+            minVal = Math.min(a,Math.min(b,c));
+            maxVal = Math.max(a,Math.max(b,c));
+
+            int diff = Math.abs(maxVal - minVal);
+            ans = Math.min(ans,diff);
+
+            if(minVal == a){
+                i++;
+            }else if(minVal == b){
+                j++;
+            }else{
+                k++;
+            }
+        }
+        return ans;
+    }
+};
+
+You are given three arrays X, Y and Z of size A,B and C respectively.Also, all three arrays are sorted in non-decreasing order. Find i, j, k such that : 0 <= i < A, 0 <= j < B, 0 <= k < C and max(abs(X[i] - Y[j]), abs(Y[j] - Z[k]), abs(Z[k] - X[i])) is minimized. Your task is to return the minimum of all the max(abs(X[i] - Y[j]), abs(Y[j] - Z[k]), abs(Z[k] - X[i]))
+
+Note:
+1. All the arrays are sorted in non-decreasing order.
+2. abs(x) denotes the absolute value of x, i.e. if x<0, the abs function returns (-x) so that the final value of x becomes positive.
+Detailed explanation ( Input/output format, Notes, Images )
+Constraints:
+1 <= T <=  100
+1 <= A,B,C <= 10^4
+1 <= X[i] <= 10^4
+1 <= Y[i] <= 10^4
+1 <= Z[i] <= 10^4
+
+
+T.C => O(N)
+S.C => O(1)
