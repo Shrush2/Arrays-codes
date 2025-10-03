@@ -1,0 +1,49 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static void solve(int q, int[][] queries) {
+        // Write your code here.
+
+        Stack<Integer> stack0 = new Stack<>();
+        Stack<Integer> stack1 = new Stack<>();
+        Stack<Integer> stack2 = new Stack<>();
+
+        for(int i = 0; i < q; i++){
+            int type = queries[i][1];
+            int id = queries[i][0];
+
+            Stack<Integer> curr ;
+            if(id == 0){
+                curr = stack0;
+            } else if(id == 1){
+                curr = stack1;
+            } else {
+                curr = stack2;
+        } 
+
+        if(type == 0){
+            if(curr.isEmpty()) System.out.println(-1);
+            else  System.out.println(curr.pop());
+            
+        } else {
+            int ele = queries[i][2];
+            curr.push(ele);
+        }
+    }
+
+
+}
+}
+
+
+Given a sequence of queries of insertion and deletion from 3 stacks, you need to implement three stacks using a single array such that the size of the array doesn’t exceed the number of queries.
+In each query, the input is of two types :
+Id 0: where ‘id’ is the index of the stack ( out of the three ) in which we have to work on, 0 means we have to pop a top element from the stack.
+Id 1 ele: where ‘id’ is the index of the stack ( out of the three ) in which we have to work on, 1 means we have to push ‘ele’ element on top of the stack.
+After each pop operation, you have to print the element which is removed.
+note: If a pop operation is used in an empty stack nothing happens to the stack, but you have to print -1.
+
+
+
+T.C => O(q)
+S.C => O(q) where n = no. of queries
