@@ -1,0 +1,35 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static long countOfNumbers(long n) {
+		// Write your code here.
+		Queue<Long> queue = new LinkedList<>();
+		long cnt = 0;
+		queue.add(1L);
+
+		while(!queue.isEmpty()){
+			long num = queue.poll();
+
+			if(num > n){
+				continue;
+			}
+			cnt++;
+
+			long next0 = num * 10;
+			long next1 = num * 10 + 1;
+
+			if(next0 <= n) queue.add(next0);
+			if(next1 <= n) queue.add(next1);
+		}
+		return cnt;
+	}
+}
+
+Given an integer ‘N’, the task is to find the number of integers between 1 to N whose decimal number representation contains only 0s and 1s.
+For example, 1011 , 11, 100 are all valid integers since they consist of 1s and 0s only, however 210, 3401 are not valid integers.
+
+Note :
+You don’t need to print anything. It has already been taken care of. Just implement the given function.
+
+T.C => O(M)
+S.C => O(M)
