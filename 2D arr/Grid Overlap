@@ -1,0 +1,62 @@
+import java.util.* ;
+import java.io.*; 
+import  java.util.ArrayList;
+
+public class Solution {
+    public static int gridOverlap(ArrayList<ArrayList<Integer>> mat1, ArrayList<ArrayList<Integer>> mat2, int n)  {
+        // Write your code here
+        int maxOverlap = Integer.MIN_VALUE;
+        for(int dx = -(n-1) ; dx <= (n-1); dx++){
+            for(int dy = -(n-1); dy <= (n-1); dy++){
+                    int overlap = 0;
+
+                for(int i = 0; i < n; i++){
+                    for(int j = 0; j < n; j++){
+                        int newX = i + dx;
+                        int newY = j + dy;
+
+                        if(newX >= 0 && newX < n && newY >= 0 && newY < n){
+                            if((mat1.get(i).get(j) == 1) && (mat2.get(newX).get(newY)) == 1){
+                                overlap++;
+                            }
+                        }
+                    }
+                    
+                }
+            
+            maxOverlap = Math.max(maxOverlap,overlap);
+            }
+        }
+        return maxOverlap;
+    }
+}
+
+
+
+You are given two binary grids ‘MAT1’ and ‘MAT2’ of size N x N each. Both grids either have 0 or 1 written in each cell.
+
+You can perform four types of operations to MAT1-
+
+• Right Shift
+• Left Shift
+• Up Shift
+• Down Shift
+For eg:
+
+Let the grid MAT1 be-
+
+ After one right shift, it will look like-
+
+After one left shift, it will look like-
+
+After one up shift, it will look like-
+
+After one down shift, it will look like-
+
+You can perform any of the above operations in any order, any number of times(possibly zero) to MAT1.
+
+Overlap of two grids is defined as the number of cells which have 1 written in it, in both the grids. Your task is to find the maximum possible overlap between ‘MAT1’ 
+and ‘MAT2’ after applying some operations to ‘MAT1’.
+
+T.C => O(N*N)
+S.C => O(1)
