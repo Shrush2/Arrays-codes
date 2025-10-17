@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class Solution{
+    public static int missingNumber(int n, int []arr){
+
+        Map<Integer,Integer> freq = new HashMap<>();
+        for(int num : arr){
+            freq.put(num,freq.getOrDefault(num,0)+1);
+        }
+
+        for(int i = 0; i < n; i++){
+            int num = freq.get(arr[i]);
+            if(num % 2 != 0){
+                return arr[i];
+            }
+        }
+        return 0;
+    }
+}
+
+Given an array ‘ARR’ of ‘N’ integers, where all the elements occur an even number of times and only one number occurs an odd number of times.
+
+
+
+Find and return the number which occurs an odd number of times.
+
+
+
+For example:
+'N' = 5, 'ARR' = [1, 2, 3, 2, 3]
+Output: 1
+Except for number 1, all numbers occur an even number of times.
+
+T.C => O(N)
+S.C => O(1)
