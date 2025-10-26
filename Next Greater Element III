@@ -1,0 +1,49 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static long bobsHomework(int n)
+    {
+        char[] digits = String.valueOf(n).toCharArray();
+        int i = digits.length - 2;
+        while(i >= 0 && digits[i] >= digits[i+1]){
+            i--;
+        }
+
+        if(i < 0) return -1;
+
+        int j = digits.length - 1;
+        while(digits[j] <= digits[i]){
+            j--;
+        }
+
+        swap(digits,i,j);
+        reverse(digits,i+1,digits.length-1);
+
+        long ans = Long.parseLong(new String(digits));
+        return ans;
+    }
+
+    public static void swap(char digits[],int i,int j){
+        char temp = digits[i];
+        digits[i] = digits[j];
+        digits[j] = temp;
+    }
+
+
+    public static void reverse(char arr[],int start,int end){
+        while(start < end){
+            swap(arr,start,end);
+            start++;
+            end--;
+        }
+    }
+}
+
+
+Alice and Bob were given homework to bring a number. As usual, Bob forgot to do it and asked Alice if he could copy her’s. Alice agreed to help him only if he rearranged the digits of her number such that the new 
+number was strictly greater than the old one. Also, the teacher does not like big numbers, so Bob needs to make sure his number is as small as possible. 
+Help Bob rearrange the digits of Alice’s number to make a number greater than that of Alice and is smallest possible or print -1 when no such number exists.
+
+eg : 225
+possible no : 225,252,522
+ans : 252
