@@ -1,0 +1,40 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int[] nextGreaterElement(int n, int A[], int m, int B[]) {
+        // Write your code here..
+
+        Map<Integer,Integer> nextGreater = new HashMap<>();
+        Stack<Integer> stack = new Stack<>();
+
+        for(int i = m-1; i >= 0; i--){
+            int val = B[i];
+        while(!stack.isEmpty() && stack.peek() <= val){
+            stack.pop();
+        }
+        int nextgreat = stack.isEmpty() ? -1 : stack.peek();
+        nextGreater.put(val,nextgreat);
+
+        stack.push(val);
+        }
+
+        int res[] = new int[n];
+        for(int i = 0; i < n; i++){
+            res[i] = nextGreater.getOrDefault(A[i],-1);
+        }
+        return res;
+
+
+    }
+
+}
+
+
+Problem statement
+You are given an array ‘A’ containing a permutation ‘N’ numbers (0 ≤ A[i] < N). You are also given another array ‘B’ containing a permutation ‘M’ numbers (0 ≤ B[j] < M) and it is also given that N ≤ M.
+For each element in array ‘A’ you need to find the first greater element to the right of the element in array ‘B’ that has the same value as the current array A’s element. In other words, for each ‘i’
+from 0 to N - 1 in array ‘A’, you need to find an index ‘j’ in array ‘B’ such that A[i] = B[j], now you need to print the element that lies on the right of the j’th index and is also greater than B[j].
+Print -1 if there is no greater element.
+
+T.C => O(N + M)
+S.C = O(N)
