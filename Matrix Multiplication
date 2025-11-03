@@ -1,0 +1,54 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+    public static ArrayList<ArrayList<Integer>> multiplyMatrices(ArrayList<ArrayList<Integer>> mat1, ArrayList<ArrayList<Integer>> mat2) {
+
+        int n1 = mat1.size();
+        int m1 = mat1.get(0).size();
+        int n2 = mat2.size();
+        int m2 = mat2.get(0).size();
+
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+
+
+         for(int i = 0; i < n1; i++){
+             ArrayList<Integer> row = new ArrayList<>(Collections.nCopies(m2,0));
+             res.add(row);
+         }
+
+         for(int i = 0; i < n1; i++){
+             for(int j = 0; j < m2; j++){
+                 int sum = 0;
+
+                 for(int k = 0; k < m1; k++){
+                     sum = sum + (mat1.get(i).get(k) * mat2.get(k).get(j));
+            
+                 }
+                 res.get(i).set(j,sum);
+             }
+         }
+         return res;
+    }
+    
+}
+
+
+size ‘N’ x ‘M’ and ‘M’ x ‘P’, respectively.
+A sparse matrix is a matrix that contains very few non-zero elements.
+Ninja has to find the matrix formed by the multiplication of ‘MAT1’ and ‘MAT2’. As Ninja is busy with some other tasks so he needs your help. Can you help Ninja to find the matrix formed by
+the multiplication of ‘MAT1’ and ‘MAT2’?
+
+Note: The number of columns in ‘MAT1’ i.e ‘M’ is equal to the number of rows in ‘MAT2’ i.e ‘M’. It means we can always multiply ‘MAT1’ with ‘MAT2’.
+
+For example:
+
+For the ‘MAT1’ and ‘MAT2’ given below, ‘MAT3’ is the matrix formed by multiplying ‘MAT1’ and ‘MAT2’. 
+
+1. MAT3[0][0] = MAT1[0][0] * MAT2[0][0] + MAT1[0][1] * MAT2[1][0]  ie. 2 * 1 + 1 * 4 = 6
+2. MAT3[1][0] = MAT1[1][0] * MAT2[1][0] + MAT1[1][1] * MAT2[1][0] ie. 0 * 6 + 0 * 4 = 0
+
+
+T.C => O(n * m)
+S.C => O(n * m)
