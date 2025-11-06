@@ -1,0 +1,48 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{
+    public static ArrayList<Integer> harderPuzzle(int n, ArrayList<Integer> puzzle) 
+	{
+        // Write your code here.
+		int size = puzzle.size();
+		Stack<Integer>stack = new Stack<>();
+		ArrayList<Integer> result = new ArrayList<>(Collections.nCopies(size,0));
+
+		for(int i = 0; i < size; i++){
+			while(!stack.isEmpty() && puzzle.get(i) > puzzle.get(stack.peek())){
+				int indx = stack.pop();
+				result.set(indx,i-indx);
+			}
+			stack.push(i);
+			
+		}
+		return result;
+    }
+}
+
+Martha is a very bright student. She loves solving high-level puzzles. She has a list of ‘N’ puzzles. Each puzzle has some difficulty level. There is a rule that one can only solve a puzzle with difficulty ‘X’ if she has already solved all the puzzles with difficulty less than ‘X’. She can’t wait to get a puzzle having a difficulty level higher than the current puzzle.
+
+Your task is to tell Martha how long she has to wait to get a puzzle having a higher difficulty level than the current puzzle. If there is no puzzle ahead with a higher difficulty level, just print "0".
+
+For Example :
+Let ‘N’ = 5 and ‘PUZZLE’ = [ 30, 40, 80, 50, 70 ]
+
+After solving the first puzzle, the very next puzzle has a difficulty level 40 and 40 > 30. 
+Then after 40, the very next puzzle has a difficulty level 80 and 80 > 40.
+But for 80, there is no puzzle having a difficulty level greater than 80. 
+For 50, the very next puzzle has a difficulty level 70 and 70 > 50. 
+Again for 70, there is no puzzle having a difficulty level greater than 70.
+
+So the output will be [1, 1, 0, 1, 0].
+Detailed explanation ( Input/output format, Notes, Images )
+Constraints :
+1 <= ‘T’ <= 50
+1 <= ‘N’ <= 10^4
+30 <= ‘PUZZLE[i]’ <= 100
+Where, 'PUZZLE[i]' represents the difficulty level of puzzle 'i'.
+
+
+T.C => O(N)
+S.C => O(N)
+
