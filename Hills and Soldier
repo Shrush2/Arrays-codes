@@ -1,0 +1,41 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int countPairs(int n, int[] hills) {
+		// Write your code here.
+
+		int c = 0;
+		for(int i = 0; i < n-1; i++){
+			int max = Integer.MIN_VALUE;
+			for(int j = i+1; j < n; j++){
+				max = Math.max(max,hills[j]);
+				if(max > hills[i]){
+					c++;
+					break;
+				}else if(hills[j] <= hills[i] && max <= hills[j]){
+					c++;
+				}
+			}
+		}
+		return c;
+	}
+}
+
+Problem statement
+In old times when there was no direct communication channel present, for the security of kingdoms and to convey the danger to the kingdom the soldier used to fire light torches on the hills, and the soldier on other hills could watch those light torches and used to get the message.
+
+A soldier can watch the torch of another hill if there is no hill between them that is higher than any of the two hills.
+
+You are given an array of size ‘N’ representing the heights of the hill in order by the name ‘HILLS’ and you have to tell the number of pairs of soldiers who can see the torch of each other.
+
+For a pair, (a, b) is same as (b, a).
+
+Example:
+Input: ‘N’ = 4, ‘HILLS’ = [3, 2, 1, 3]
+Output: 5
+If we consider the indices from 0 to 3 then the pairs are (0, 1), (0,3), (1, 2), (1,3), and (2, 3).
+The soldier at hill 0 can not see hill 2 as hill[1]>hill[2].
+Note : Test cases are made in such a way that the answer will fit in 32-bit integer.
+
+T.C => O(N)^2
+S.C => O(1)
