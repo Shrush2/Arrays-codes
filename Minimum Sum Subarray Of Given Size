@@ -1,0 +1,66 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution
+{
+public static int minSubarraySum(ArrayList<Integer> arr, int n, int k)
+    {
+        // Write your code here.
+        long sum = 0;
+        long minsum = Integer.MAX_VALUE;
+        for(int i = 0; i < k; i++){
+            sum += arr.get(i);
+        }
+        minsum = sum;
+
+        for(int i = k; i < n; i++){
+            sum += arr.get(i) - arr.get(i-k);
+            minsum = Math.min(minsum,sum);
+        }
+ return (int)minsum;
+
+        }
+        
+    }
+
+You have been given an array 'ARR' of integers consisting of ‘N’ integers and a positive integer ‘K’. Your task is to find a subarray(contiguous) of size ‘K’ such that the sum of its elements is minimum.
+Note :
+You can assume that the value of ‘K’ will always be less than or equal to ‘N’. So, the answer will always exist.
+
+
+ARR = [5, 3, 8, 1, 2, 4]  
+N = 6  
+K = 3  
+🔄 Dry Run
+1️⃣ First window (first 3 elements)
+
+bash
+Copy code
+[5, 3, 8] → sum = 16
+minSum = 16
+2️⃣ Slide window right
+Remove 5, add 1:
+
+bash
+Copy code
+[3, 8, 1] → sum = 16 - 5 + 1 = 12
+minSum = 12 ✅ updated
+3️⃣ Slide again
+Remove 3, add 2:
+
+bash
+Copy code
+[8, 1, 2] → sum = 12 - 3 + 2 = 11
+minSum = 11 ✅ updated
+4️⃣ Slide again
+Remove 8, add 4:
+
+bash
+Copy code
+[1, 2, 4] → sum = 11 - 8 + 4 = 7
+minSum = 7 ✅ updated
+(No more slides possible because we reached end)
+
+✅ Answer
+Minimum sum = 7
+
+Subarray = [1, 2, 4]
