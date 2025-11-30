@@ -1,0 +1,41 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static ArrayList<Integer> findSubmatrixSum(ArrayList<ArrayList<Integer>> arr, ArrayList<ArrayList<Integer>> queries) {
+
+		// Write your code here
+		ArrayList<Integer> res = new ArrayList<>();
+
+		for(int q = 0; q < queries.size(); q++){
+		int r1 = queries.get(q).get(0);
+		int c1 = queries.get(q).get(1);
+		int r2 = queries.get(q).get(2);
+		int c2 = queries.get(q).get(3);
+
+			int sum = 0;
+		for(int i = r1; i <= r2; i++){
+			for(int j = c1; j <= c2; j++){
+				sum += arr.get(i).get(j);
+			}
+		}
+		res.add(sum);
+		}
+		return res;
+	}
+}
+
+You have given a 2-dimensional array ‘ARR’ with ‘N’ rows and ‘M’ columns. The queries are given in a 2-dimensional array ‘Queries’ of size ‘K’, in which Queries[i] 
+contains four integers denoting the left top and right bottom indices of the submatrix whose sum we need to find. Your task is to find the sum of the submatrix for each query given in the array ‘Queries’.
+For example:
+
+Consider ARR = [[1 , 2 , 3] , [3 , 4 , 1] , [2 , 1 , 2]] and Queries = [[0 , 0 , 1 , 2]], the submatrix with the left top index (0 , 0) and right bottom index (1 , 2) is  
+                      [[1 , 2 , 3] , 
+                       [3 , 4 , 1]]. 
+The sum of the submatrix is 14. Hence, the answer is 14 in this case.
+
+
+T.C => O(N * M)
+S.C => O(N)
