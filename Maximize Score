@@ -1,0 +1,44 @@
+import java.util.*;
+
+public class Solution {
+	public static int maximizeScore(ArrayList<Integer> arr, int n, int k) {
+		//Write your code here
+		
+		int prefix[] = new int[k+1];
+		prefix[0] = 0;
+		for(int i = 1; i <= k; i++){
+			prefix[i] = prefix[i-1] + arr.get(i-1);
+		}
+
+		int suffix[] = new int[k+1];
+		suffix[0] = 0;
+		for(int i = 1; i <= k; i++){
+			suffix[i] = suffix[i-1] + arr.get(n-i);
+		}
+
+		int maxScore = 0;
+		for(int i = 0; i <= k; i++){
+			int score = prefix[i] + suffix[k-i];
+			maxScore = Math.max(maxScore,score);
+		}
+		return maxScore;
+	}
+}
+
+You are given an array ‘arr’ of size ‘N’. Your task is to maximize your score by doing the following operation at most ‘K’ – times.
+1. Choose an element from the start or end of the array and the value of the element to your score.
+2. Remove the element from the array you have chosen in step – 1.
+Note:
+Initially, you have a score of zero.
+
+
+Given N = 5 and K = 2.
+arr = [10, 5, 6, 7, 9]
+Initial score = 0
+In the first operation choose 10 from the start and add it to the score.
+So score = 10 and arr = [5, 6, 7, 9]
+In the second operation choose 9 from the end and add it to the score.
+So final score = 10 + 9 = 19.
+
+T.C => O(K)
+S.C => O(K)
