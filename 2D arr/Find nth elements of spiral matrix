@@ -1,0 +1,108 @@
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+	public static int findKthElement(int[][] matrix, int k) {
+	    // Write your code here.
+		int n = matrix.length;
+		int m = matrix[0].length;
+		int top = 0;
+		int left = 0;
+		int bottom = n-1;
+		int right = m-1;
+		int cnt = 0;
+		
+
+		while(top <= bottom && left <= right){
+			for(int i = left; i <= right; i++){
+				cnt++;
+				if(cnt == k) return matrix[top][i];
+				
+			}
+			top++;
+
+			for(int j = top; j <= bottom; j++){
+				cnt++;
+				if(cnt == k) return matrix[j][right];
+			}
+			right--;
+
+			if(top <= bottom){
+				for(int i = right; i >= left; i--){
+					cnt++;
+					if(cnt == k) return matrix[bottom][i];
+
+				}
+				bottom--;
+			}
+
+			if(left <= right){
+				for(int i = bottom; i >= top; i--){
+					cnt++;
+					if(cnt == k) return matrix[i][left];
+				}
+				left++;
+			}
+		}
+		return -1;
+
+		
+	}
+}
+
+
+
+Problem statement
+Given a matrix with ‘N’ rows and ‘M’ columns and an integer ‘K’. Your task is to find the “Kth” element which is obtained while traversing the matrix in spiral form.
+
+Spiral Traversing in the matrix:
+
+The below picture can clearly show how to traverse a matrix in spiral form.
+mat = [
+  [1,  2,  3],
+  [4,  5,  6],
+  [7,  8,  9]
+]
+Spiral order →
+1, 2, 3, 6, 9, 8, 7, 4, 5
+
+Let’s pick:
+👉 k = 5
+
+Steps to traverse the array :-
+We maintain boundaries:
+
+top = 0
+
+bottom = n - 1
+
+left = 0
+
+right = m - 1
+
+And a counter cnt to track how many elements have been visited.
+
+Count	Element
+1	     1
+2      2
+3	     3
+4    	 6
+5   	 9
+
+✅ Answer = 9
+
+*******At each step:********
+
+Traverse left → right (top row)
+
+Traverse top+1 → bottom (right column)
+
+Traverse right-1 → left (bottom row) — only if rows remain
+
+Traverse bottom-1 → top+1 (left column) — only if columns remain
+
+Whenever cnt == k, return that element.
+
+T.C => O(N * M)
+S.C => O(1)
