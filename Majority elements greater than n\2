@@ -27,3 +27,32 @@ class Solution {
         return -1;
     }
 }
+
+
+
+
+=======================2nd approach ===========================
+import java.io.*;
+import java.util.* ;
+
+public class Solution {
+	public static int findMajority(int[] arr, int n) {
+		// Write your code here.
+		 double cnts = Math.floor(n/2);
+
+		Map<Integer,Integer> map = new HashMap<>();
+		for(int i = 0; i < n; i++){
+			map.put(arr[i],map.getOrDefault(arr[i],0)+1);
+		}
+
+		for(int i = 0; i < n; i++){
+			if(map.get(arr[i]) > cnts){
+				return arr[i];
+			}
+		}
+		return -1;
+	}
+}
+
+T.C => O(N)
+S.C => O(N)
