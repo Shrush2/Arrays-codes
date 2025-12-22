@@ -1,0 +1,60 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int calculateMaximisedSum(int[] arr1, int[] arr2, int n) {
+
+        int dp0 = Math.abs(arr1[0] - arr2[0]);
+        int dp1 = dp0;
+
+        for(int i = 1; i < n; i++){
+            int newDp0 = Math.max(
+                dp0 + Math.abs(arr1[i] - arr2[i-1]),
+                dp1 + Math.abs(arr1[i] - arr1[i-1])
+            ) + Math.abs(arr1[i] - arr2[i]);
+
+            int newDp1 = Math.max(
+                dp0 + Math.abs(arr2[i] - arr2[i-1]),
+                dp1 + Math.abs(arr2[i] - arr1[i-1])
+            ) + Math.abs(arr2[i] - arr1[i]);
+
+            dp0 = newDp0;
+            dp1 = newDp1;
+        }
+        return Math.max(dp0,dp1);
+    }
+}
+
+
+
+Problem statement
+You are given two arrays of the same size. Your task is to maximize the possible sum that can be calculated using elements of the two given arrays. You are allowed to swap elements between the arrays at the
+same position any number of times to achieve this.
+Note:
+The maximum sum is calculated by using the following rules:-
+
+For every ‘i’ in range 0...N:
+Max_sum += abs(arr1[i] - arr2[i])
+And If i < N-1:
+    Max_sum += abs(arr1[i+1] - arr2[i])
+For Example
+Input:
+n = 4
+arr1[] = {2,3,4,1}
+arr2[] = {2,4,1,1}
+
+Ouput: 11
+Explanation:
+
+Here we will swap arr1[2] and arr2[2]. (Swap)
+
+arr1[] = {2,3,1,1}
+arr2[] = {2,4,4,1}
+
+for this type of arrangement, we have our maximum Define Sum.
+Sum = abs(arr1[0]-arr2[0]) + abs(arr1[1]-arr2[0]) + abs(arr1[1]-arr2[1]) + abs(arr1[2]-arr2[1]) ....
+Sum = abs(2-2) + abs(3-2) + abs(3-4) + abs(1-4) + abs(1-4) + abs(1-4) + abs(1-1) = 11
+
+
+
+T.C => O(N log N)
+S.C => O(N)
