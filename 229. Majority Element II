@@ -1,0 +1,27 @@
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        Map<Integer,Integer> map = new HashMap<>();
+        List<Integer> ans = new ArrayList<>();
+        int n = nums.length;
+        int times = (int)(n/3) + 1;
+
+        for(int i = 0; i < n; i++){
+            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+            if(map.get(nums[i]) == times){
+                ans.add(nums[i]);
+            }
+        }
+
+        return ans;
+    }
+}
+
+Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
+
+Example 1:
+
+Input: nums = [3,2,3]
+Output: [3]
+
+T.C => O(N)
+S.C => O(N)
