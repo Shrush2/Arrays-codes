@@ -1,0 +1,43 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+    public static int findMaxElement(ArrayList < ArrayList < Integer >> arr, int n, int m) {
+        // Write your code here.
+
+        int A[] = new int [n+1];
+        for(int i = 0; i < m; i++){
+            int L = arr.get(i).get(0);
+            int R = arr.get(i).get(1);
+
+            for(int idx = L; idx <= R; idx++){
+                A[idx]++;
+            }
+        }
+
+        int maxi = 0;
+        for(int i = 0; i < A.length; i++){
+            maxi = Math.max(maxi,A[i]);
+        }
+        return maxi;
+    }
+}
+
+
+
+You have been given an array/list ‘A’ consisting of ‘N’ integers all of which are ‘0’ initially. You are given an array/list ‘ARR’ consisting of ‘M’ pairs of integers 
+which are ‘M’ operations you need to perform on ‘A’. In each operation, you are given a range and you need to increase each element whose index lies in that range by ‘1’.
+Your task is to return the maximum element of array/list ‘A’ after all ‘M’ operations are performed.
+Example:
+Let’s assume ‘N’ is 5. Initially, all the elements are initialized to zero. we need to perform 2 operations 1 5 and 2 4. In operation 1 5, we will increase 
+all the elements from index 1 to 5 by 1 i.e it becomes [1,1,1,1,1]. 
+
+In operation 2 4, we will increase all the elements from index 2 to 4 by 1 i.e it becomes [1,2,2,2,1]. So answer in this case will be 2 as 2 is the maximum element
+of the array/list. 
+Note:
+In the above question array/list is assumed to have ‘1’ - based indexing i.e. array/list starts from index 1.
+
+
+T.C => O(N * M)
+S.C => O(N)
