@@ -1,0 +1,191 @@
+import java.io.*;
+import java.util.* ;
+
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static int LongestSubsetWithZeroSum(ArrayList<Integer> arr) {
+
+		int n = arr.size();
+		int maxi = 0;
+		int sum = 0;
+		Map<Integer,Integer> map = new HashMap<>();
+
+		for(int i = 0; i < n; i++){
+			sum += arr.get(i);
+
+			if(sum == 0){
+				maxi = i+1;
+			}else{
+				if(map.get(sum) != null){
+					maxi = Math.max(maxi,i - map.get(sum));
+				}else{
+					map.put(sum,i);
+				}
+			}
+		}
+	return maxi;
+		}
+}
+
+
+Ninja loves playing with numbers. So his friend gives him an array on his birthday. The array consists of positive and negative integers. Now Ninja is interested in finding the length of the
+longest subarray whose sum is zero.
+
+
+Example Input
+arr = [1, -1, 2, -2, 3]
+
+Expected Output
+4
+
+
+Because the longest zero-sum subarray is:
+
+[1, -1, 2, -2]  → length = 4
+
+🔁 Code Reminder (Important Part)
+if (sum == 0) {
+    maxi = i + 1;
+}
+
+🧠 Step-by-Step Dry Run
+Initial values
+sum = 0
+maxi = 0
+map = {}
+
+🔹 i = 0
+arr[0] = 1
+sum = 1
+
+
+sum ≠ 0
+
+store in map
+
+map = {1 : 0}
+maxi = 0
+
+🔹 i = 1
+arr[1] = -1
+sum = 1 + (-1) = 0
+
+
+✅ sum == 0
+
+👉 Subarray is:
+
+[1, -1]
+
+
+Indices:
+
+0 to 1
+
+
+📏 Length:
+
+1 - 0 + 1 = 2 = i + 1
+
+
+So we do:
+
+maxi = i + 1 = 2
+
+maxi = 2
+
+🔹 i = 2
+arr[2] = 2
+sum = 2
+
+
+sum ≠ 0
+
+not in map → store
+
+map = {1:0, 2:2}
+maxi = 2
+
+🔹 i = 3
+arr[3] = -2
+sum = 0
+
+
+✅ sum == 0 again
+
+Subarray:
+
+[1, -1, 2, -2]
+
+
+Indices:
+
+0 to 3
+
+
+📏 Length:
+
+3 - 0 + 1 = 4 = i + 1
+
+
+Update:
+
+maxi = 4
+
+🔹 i = 4
+arr[4] = 3
+sum = 3
+
+
+sum ≠ 0
+
+store in map
+
+map = {1:0, 2:2, 3:4}
+
+🏁 Final Result
+maxi = 4
+
+
+✅ Output is 4
+
+❓ Why exactly i + 1?
+
+Because when:
+
+sum == 0
+
+
+It means:
+
+arr[0] + arr[1] + ... + arr[i] = 0
+
+
+So the subarray starts from index 0.
+
+📏 Length formula:
+
+end - start + 1
+= i - 0 + 1
+= i + 1
+
+🧠 One-Line Memory Trick
+
+If prefix sum becomes zero at index i, the zero-sum subarray starts from index 0, so its length is i + 1.
+
+🔹 Another Quick Example
+Input
+arr = [0, 0, 0]
+
+Dry Run
+
+i = 0 → sum = 0 → length = 1
+
+i = 1 → sum = 0 → length = 2
+
+i = 2 → sum = 0 → length = 3
+
+Output
+3
