@@ -1,0 +1,35 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int dominantNumber(int[] arr, int n) {
+		 // Write your code here.
+		 Map<Integer,Integer> map = new HashMap<>();
+
+
+		 for(int i = 0; i < n; i++){
+			 map.put(arr[i],map.getOrDefault(arr[i],0) + 1);
+		 }
+		
+		for(Map.Entry<Integer,Integer> mp : map.entrySet()){
+			if(mp.getValue() > (n/3)){
+				return mp.getKey();
+			}
+		}
+			return -1;
+	}
+}
+
+
+You are given an array of integers 'ARR' of size N. Your task is to find the dominant number in the array.
+A dominant number in an array is an integer that occurs more than N/3 times in the array, where N is the array’s length.
+
+Note:
+
+1. There will be only one such element (if it exists).
+2. If there is no such element in the array, return -1.
+For Example:
+If the given array ARR = {3,3,3,1,5,6,3} we can see that here 3 occurs 4 times in the array, which is greater than 7/3(N/3), so the dominant number here is 3.
+
+
+T.C => O(N)
+S.C => O(N)
