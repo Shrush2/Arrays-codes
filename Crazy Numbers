@@ -1,0 +1,43 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static ArrayList<ArrayList<Integer>> numberPattern(int n) {
+
+		// Write your code here.
+		ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+		int num = 1;
+		for(int i = 1; i <= n; i++){
+			ArrayList<Integer> list = new ArrayList<>();
+
+			for(int j = 1; j <= n-i; j++){
+				list.add(-1);
+			}
+
+			for(int k = 1; k <= i; k++){
+				list.add(num);
+				num++;
+
+				if(num > 9) num = 1;
+			}
+			ans.add(list);
+		}
+		return ans;
+	}
+}
+
+
+
+Ninja wants to create a right-aligned triangle of numbers across N rows. The first row contains 1 number, the second contains 2, and so on. 
+The numbers increase sequentially starting from 1 and wrap back to 1 after 9.
+
+You are given an integer ‘N’ denoting the given number of rows. Can you print the pattern that Ninja wants to create?
+
+Pattern for N = 4:
+
+   1
+  23
+ 456
+7891
