@@ -1,0 +1,51 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{
+	public static String maximumBinaryString(String bString)
+	{
+	    // write your code here.
+		int n = bString.length();
+		int firstzero = -1;
+		int zerocnt = 0;
+
+
+		for(int i = 0; i < n; i++){
+			if(bString.charAt(i) == '0'){
+				zerocnt++;
+		
+
+			if(firstzero == -1){
+				firstzero = i;
+			}
+		}
+		}
+
+		if(zerocnt < 1){
+			return bString;
+		}
+
+		char[] ans = new char[n];
+		Arrays.fill(ans,'1');
+		ans[firstzero + zerocnt - 1] = '0';
+
+		return new String(ans);
+
+	}
+}
+
+
+
+In the coding school, the teacher gave his students a binary string ‘bString’, and asked them to make the greatest binary string possible out of it by applying 
+the below-mentioned operations any number of times. The two allowed operations are:
+
+Operation 1: If the string contains the substring "00", the student can replace it with "10". For example, "00010" -> "10010" 
+Operation 2: If the string contains the substring "10", the student can replace it with "01". For example, "00010" -> "00001"
+Assuming that you are the student, find the greatest binary string one can obtain after applying the above operations any number of times.
+
+A Binary string ‘X’ is said to be greater than binary string ‘Y’, if X's decimal representation is greater than Y's decimal representation.
+
+Example:
+
+Let’s say we have bstring as “001” which is an integer 1 in decimal representation. If you apply the above-given operation then you will have bString as “101” which 
+is an integer 5 in decimal representation. 
