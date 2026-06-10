@@ -1,0 +1,31 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int[] twoSum(int numbers[], int target) {
+        
+        int n = numbers.length;
+        int l = 0, r = n-1;
+
+        while(l < r){
+            int sum = numbers[l] + numbers[r];
+
+            if(sum == target){
+                return new int[]{l,r};
+            }else if(sum < target){
+                l++;
+            }else{
+                r--;
+            }
+        }
+        return new int[]{-1,-1};
+    }
+
+}
+
+Given an array ‘A’ of size ‘N’, sorted in non-decreasing order. Return the pair of two distinct indices whose value adds up to the given ‘target’. 
+The given array is 0 indexed. So returned indices are in the range [0, N-1], both inclusive. If there are multiple answers, you can return any.
+
+For example:
+Suppose ‘N’ = 5, ‘A’ = [1,2,3,4,5], and target = 8
+As target == A[2] + A[4] = 3 + 5 = 8.
+Hence output will be 2 4.
