@@ -1,0 +1,32 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static int maxOne(ArrayList<ArrayList<Integer>> arr) {
+	
+	int n = arr.size();
+	int m = arr.get(0).size();
+
+	int row = 0;
+	int col = m-1;
+	int ans = 0;
+
+	while(row < n && col >= 0){
+		if(arr.get(row).get(col) == 1){
+			ans = row;
+			col--;
+		}else{
+			row++;
+		}
+	}
+	return ans;
+	}
+}
+
+You are given a matrix ‘ARR’ with dimensions ‘N’ * ‘M’ and containing only 0s and 1s where each row is sorted.
+Your task is to find the index of the row with a maximum number of 1s in it. Rows and columns are 0-indexed based.
+
+T.C => O(N)
+S.C => O(1)
