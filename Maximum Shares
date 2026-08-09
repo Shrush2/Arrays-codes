@@ -1,0 +1,47 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+    public static int max_shares(int k, int n, int[] shares) {
+        
+    int prices[][] = new int[n][2];
+
+    for(int i = 0;i < n; i++){
+        prices[i][0] = shares[i];
+        prices[i][1] = i+1;
+    }
+
+    Arrays.sort(prices,(a,b) -> Integer.compare(a[0],b[0]));
+
+    long ans = 0;
+    long money = k;
+
+    
+    for(int i = 0; i < n; i++){
+        int cost = prices[i][0];
+        int limit = prices[i][1];
+
+        long buy = Math.min(limit, (money/cost));
+        money -= buy * cost;
+        ans += buy;
+    }
+    return (int) ans;
+    }
+}
+
+
+Problem statement
+You have recently read the biography of Warren Buffet and are very excited to start your investing journey. So, you have decided to buy shares of a certain company. Now, you have an initial capital of Rs ‘K’. You know the prices of the particular stock for the next ‘N’ days. On an ith day, you can buy up to i shares. To maximize the profit you want to buy a maximum number of shares, so find the maximum number of shares you can buy if you buy optimally.
+
+Example:-
+Let, 
+K = 45
+N =3
+PRICES = [10, 7, 19]
+Answer:- 4
+The answer should be 4 because you can purchase 1 stock on day 1,2 stocks on day 2 and 1 stock on day 3. Hence,
+total amount spent is 10*1 + 7*2 + 19*1 = 43 and number of stocks purchased is 4.
+
+
+T.C => O(N log N)
+S.C => O(N* M)
