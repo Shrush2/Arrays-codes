@@ -1,0 +1,48 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+    public static long[] addFraction(int a, int b, int c, int d) {
+        // Write your code here.
+
+        long numerator = (long) a * d + (long) c * b;
+        long denominator  = (long) b * d;
+
+        long gcd = gcdN(numerator, denominator);
+
+        numerator = numerator / gcd;
+        denominator = denominator / gcd;
+
+        return new long[]{numerator,denominator};
+    }
+
+    public static long gcdN(long a, long b){
+        while(b != 0){
+            long temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+
+}
+
+
+You’re given two fractions, a/b, and c/d. Your task is to add these two fractions and print this answer in the simplest form.
+
+Detailed explanation ( Input/output format, Notes, Images )
+Constraints :
+1 <= T <= 10 ^ 4
+1 <= a,b,c,d <= 10 ^ 9
+Time Limit: 1 sec
+
+ Where 'T' denotes the number of test cases, 'a', 'b', 'c' and 'd' denote the integers given as input in the problem.
+Sample Input 1 :
+1
+5 7 4 9
+Sample Output 1 :
+73 63
+Explanation of Sample Input 1 :
+Sum of 5/7 + 4/9 = 73/63, which is already in its simplest form because we cannot reduce it further.
+
+
